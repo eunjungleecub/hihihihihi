@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if error %}
+{{ error }}
+<br>
+<br>
+{% endif %}
+
+<div class="container">
+
+<h1 id="title">로그인</h1>
+<br>
+<!-- link to signup -->
+    <a href="{% url 'signup' %}">
+        <input class="btn btn-dark" type="button" value="회원가입" id="s_buttons">
+    </a>
+
+<br>
+<br>
+    <form method="POST" action="{% url 'login' %}">
+
+        {% csrf_token %}
+        username: 
+        <input name="username" type="text" value="">
+        <br>
+        <br>
+        password:
+        <input name="password" type="password" value="">
+        <br>
+        <br>
+        <br>
+        <input class="btn btn-dark" type="submit" value="로그인" id="l_buttons">
+
+    </form>
+
+<br>
+
+
+</div>
+
+{% endblock content %}

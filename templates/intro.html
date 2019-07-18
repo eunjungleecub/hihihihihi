@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+
+<h1>2주차 과제</h1>
+<hr>
+    <div class="popups">
+        <h3># 이미지 팝업</h3>
+        <br>
+        <p>1. 왕티즈 (django static) </p>
+        <button class="btn btn-danger btn-lg" onclick="popup1()">팝업</button>
+        <br>
+        <br>
+        <p>2. 짱절미 (web url) </p>
+        <button class="btn btn-danger btn-lg" onclick="popup2()">팝업</button>
+        <br>
+        <br>
+        <p>3. 꽃 (django static) </p>
+        <button class="btn btn-primary btn-lg" onclick="popup3()">팝업</button>
+        <hr>
+    </div>
+
+    <div class="js_action" id="js_action">
+        <h3 id="js1">#자바스크립트 필수 조건</h3>
+        <br>
+        <p id="js2"></p>
+        <p id="js3" onclick="alter()">2. 클릭하면 스타일 바꾸기: onclick </p>
+    </div>
+
+<script>
+// html요소 받아오기
+    var action1 = document.getElementById("js1");
+    document.getElementById("js2").innerHTML = "1. html 요소 받아오기: " + action1.innerHTML+" (getElementById: 위의 문장 받아오기)";
+
+// html 스타일 바꾸기
+    function alter() {
+        var action2 = document.getElementById("js3").style.color='pink';
+        var action3 = document.getElementById("js3").style.fontSize='larger';
+        return action2+action3;
+    }
+
+// html 요소 추가
+    var parent = document.getElementById('js_action');
+    var appends = document.createElement('p');
+    var texts = document.createTextNode('3. html 요소 추가하기: appendChild로 <div>에 <p> 추가');
+    appends.appendChild(texts);
+    parent.appendChild(appends);
+
+//  이미지 팝업
+    function popup1() {
+        var popup1 = window.open("{% static 'img/wangtise.jpg' url %}", "_blank", "scrollbars=yes,resizable=yes,height=300,width=400");
+  }
+    function popup2() {
+        var popup2 = window.open("https://img.insight.co.kr/static/2018/08/29/700/w0tegu631c1yh62rdnlj.jpg", "_blank", "scrollbars=yes,resizable=yes,height=556,width=700");
+  }
+    function popup3() {
+        var popup3 = window.open("{% static 'img/kkot.jpg' url %}", "__blank", "scrollbars=no,resizable=yes,height=300,width=300");
+  }
+</script>
+
+</div>
+
+{% endblock content %}

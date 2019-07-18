@@ -1,0 +1,1 @@
+web: gunicorn crudnote.wsgi --log-file -
