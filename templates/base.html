@@ -94,10 +94,9 @@ a:hover {
       <!-- login -->
     <div class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="{% url 'login' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인
+        <a class="nav-link dropdown-toggle" href="{% url 'login' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원메뉴
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          {% if user.is_authenticated %}<a class="dropdown-item">{{request.user.username}}</a>{% endif %}
           <a class="dropdown-item" href="{% url 'login' %}">로그인</a>
           <a class="dropdown-item" href="{% url 'logout' %}">로그아웃</a>
 

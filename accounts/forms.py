@@ -6,9 +6,10 @@
     <h1> 회원가입 </h1>
 
     <form action="{% url 'signup' %}">
+
         {% csrf_token %}
         
-        사용자 ID:
+        사용자 이름:
         <input name="username" type="text" value="">
         <br>
         비밀번호:
