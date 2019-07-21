@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required #login required to redirect to detail page
 from .models import Post #  'blog/models.py'에서 Post 가져오기
 from .forms import PostForm, CommentForm # 'blog/forms.p' 에서 PostForm 가져오기
 
@@ -9,10 +10,9 @@ def main(request):
 def popup(request):
     return render(request, 'wangtise.html')
 
-
 def intro(request):
     return render(request, 'intro.html')
-    
+
 def home(request):  #   'posts list' 페이지 
     posts = Post.objects # Post의 객체들을 posts 변수에 담아주기
     return render(request, 'postslist.html', {'posts':posts}) 
@@ -30,10 +30,9 @@ def post_create(request):   #생성
         form = PostForm() # POST 방식이 아닐때 == 저장하는게 아니고 form에 내용 입력하려고 처음 열 때
     return render(request, 'postcreate.html', {'form': form}) # form 생성
 
-
+@login_required()
 def post_detail(request, pk):  # pk=primary key: 게시물 고유번호
     post = get_object_or_404(Post, pk=pk) # get_object_or_404: object를 가져오거나 없으면 404 에러를 내기
-
     return render(request, 'postdetail.html', {'post': post})
     # 'postdetail.html'을 가져오기, 'post'를 호출하면 get_object_or_404 실행
 

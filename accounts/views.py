@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.contrib import auth
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -41,8 +41,3 @@ def logout(request):
         return redirect('home')
     return render(request, 'postslist.html')
 
-#display username on navbar when logged in;
-def get_username(request):
-    username=None #default: none
-    if request.user.is_authenticated():
-        username=request.user.username
