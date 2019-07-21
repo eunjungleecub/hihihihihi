@@ -38,6 +38,6 @@ def login(request):
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
-        return redirect('home')
-    return render(request, 'postslist.html')
+        return redirect('main')
+    return render(request, 'main.html')
 
