@@ -1,17 +1,26 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.core.exceptions import ObjectDoesNotExist
+
 # Create your views here.
 
 
 def signup(request):
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(
-                request.POST['username'], password=request.POST['password1'])
-            auth.login(request, user)
-            return redirect('home')
-    return render(request, 'signup.html')
+            try:
+                user = User.objects.get(username=request.POST['username'])
+                return render(request, 'signup.html', {'error': '이미 존재하는 사용자 이름입니다. '})
+            except User.DoesNotExist:
+                user = User.objects.create_user(
+                    request.POST['username'], password=request.POST['password1'])
+                auth.login(request, user)
+                return redirect('home')
+        else:
+            return render(request, 'signup.html', {'error': '비밀번호가 일치하지 않습니다.'})
+    else:
+        return render(request, 'signup.html')
 
 def login(request):
     if request.method=='POST':
@@ -31,3 +40,9 @@ def logout(request):
         auth.logout(request)
         return redirect('home')
     return render(request, 'postslist.html')
+
+#display username on navbar when logged in;
+def get_username(request):
+    username=None #default: none
+    if request.user.is_authenticated():
+        username=request.user.username

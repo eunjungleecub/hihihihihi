@@ -72,6 +72,21 @@ a:hover {
   float: right;
 }
 
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 </style>
 
@@ -93,18 +108,12 @@ a:hover {
     </div>
       <!-- login -->
     <div class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="{% url 'login' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원메뉴
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'login' %}">로그인</a>
-          <a class="dropdown-item" href="{% url 'logout' %}">로그아웃</a>
-
-        </div>
-      </li>
-        <a class="navbar-brand"></a>
+      <a class="nav-item nav-link" href="{% url 'login' %}">로그인</a>
+      <a class="nav-item nav-link" href="{% url 'logout' %}">로그아웃</a>
     </div>
+
   </div>
+
 </nav>
 
 {% block content %}
